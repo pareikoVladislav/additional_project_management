@@ -7,7 +7,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('management_app', '0005_alter_task_assignee'),
+        ('management_app', '0006_alter_project_options'),
     ]
 
     operations = [
