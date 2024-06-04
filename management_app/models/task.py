@@ -1,11 +1,11 @@
-from django.contrib.auth.password_validation import MinimumLengthValidator
+from django.core.validators import MinLengthValidator
 from django.db import models
 
-from management_app.models.constants import STATUS_CHOICES
+from management_app.constants.choices_models import STATUS_CHOICES
 
 
 class Task(models.Model):
-    name = models.CharField(max_length=120, unique=True, validators=MinimumLengthValidator(min_length=10))
+    name = models.CharField(max_length=120, unique=True, validators=[MinLengthValidator(10)])
     description = models.TextField(null=True, blank=True)
     status = models.CharField(max_length=15, choices=STATUS_CHOICES)
     project = models.ForeignKey('Project', on_delete=models.CASCADE, related_name='tasks')
