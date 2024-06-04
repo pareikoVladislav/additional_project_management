@@ -1,5 +1,6 @@
 from django.core.validators import MinLengthValidator
 from django.db import models
+from django.contrib.auth.models import User
 
 from management_app.constants.choices_models import STATUS_CHOICES, PRIORITY_CHOICES
 
@@ -14,6 +15,13 @@ class Task(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     deleted_at = models.DateTimeField(null=True, blank=True)
     due_date = models.DateTimeField(null=True, blank=True)
+    assignee = models.OneToOneField(
+        User,
+        on_delete=models.CASCADE,
+        related_name='tasks',
+        null=True,
+        blank=True
+    )
 
     def __str__(self):
         return f"{self.name}, status: {self.status}"
