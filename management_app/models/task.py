@@ -1,7 +1,7 @@
 from django.core.validators import MinLengthValidator
 from django.db import models
 
-from management_app.models.constants import STATUS_CHOICES, PRIORITY_CHOICES
+from management_app.constants.choices_models import STATUS_CHOICES, PRIORITY_CHOICES
 
 
 class Task(models.Model):
