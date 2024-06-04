@@ -36,4 +36,3 @@ class ProjectFile(models.Model):
         ordering = ['-created_at']
         verbose_name = 'Project File'
         verbose_name_plural = 'Project Files'
-
