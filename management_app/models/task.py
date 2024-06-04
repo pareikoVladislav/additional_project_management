@@ -23,5 +23,10 @@ class Task(models.Model):
         blank=True
     )
 
+    class Meta:
+        verbose_name_plural = 'Tasks'
+        ordering = ['-due_date']
+        unique_together = ('name', 'project')
+
     def __str__(self):
         return f"{self.name}, status: {self.status}"
