@@ -19,13 +19,22 @@ from management_app.models import Project, Task, Tag
 class ProjectAdmin(admin.ModelAdmin):
     search_fields = ('name',)
 
+    def replace_spaces_with_underscores(self, request, objects):
+        for obj in objects:
+            obj.name = obj.name.replace(" ", "_")
+            obj.save()
+        return objects
 
+    replace_spaces_with_underscores.short_description = 'Replace spaces with underscorses'
+
+    actions = [replace_spaces_with_underscores]
 
 
 @admin.register(Task)
 class TaskAdmin(admin.ModelAdmin):
     search_fields = ('name',)
     list_display = ('name', 'project', 'assignee', 'status', 'priority', 'created_date', 'due_date')
+
 
 @admin.register(Tag)
 class TagAdmin(admin.ModelAdmin):
