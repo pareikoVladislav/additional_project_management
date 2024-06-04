@@ -17,15 +17,15 @@ from management_app.models import Project, Task, Tag
 
 @admin.register(Project)
 class ProjectAdmin(admin.ModelAdmin):
-    search_fields = ['name']
-    list_display = ['name', 'project', 'status', 'priority', 'created_date', 'due_date']
+    search_fields = ('name',)
+
 
 
 
 @admin.register(Task)
 class TaskAdmin(admin.ModelAdmin):
-    search_fields = ['name']
-
+    search_fields = ('name',)
+    list_display = ('name', 'project', 'assignee', 'status', 'priority', 'created_date', 'due_date')
 
 @admin.register(Tag)
 class TagAdmin(admin.ModelAdmin):

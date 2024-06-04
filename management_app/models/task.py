@@ -17,7 +17,7 @@ class Task(models.Model):
     due_date = models.DateTimeField(null=True, blank=True)
     assignee = models.OneToOneField(
         User,
-        on_delete=models.CASCADE,
+        on_delete=models.PROTECT,
         related_name='tasks',
         null=True,
         blank=True
