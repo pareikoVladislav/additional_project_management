@@ -3,3 +3,10 @@ STATUS_CHOICES = [
     ("pending", "Pending"),
     ("closed", "Closed"),
 ]
+
+PRIORITY_CHOICES = [
+    ("Normal", "Normal"),
+    ("Major", "Major"),
+    ("Critical", "Critical"),
+    ("Urgent", "Urgent"),
+]
