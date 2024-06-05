@@ -5,12 +5,11 @@ class Project(models.Model):
     name = models.CharField(unique=True, max_length=100)
     description = models.TextField()
     date_of_creation = models.DateTimeField(auto_now_add=True)
-    project_files = models.ManyToManyField('ProjectFile', related_name='project_files')
-    files = models.ManyToManyField('ProjectFile', related_name='files')
+    project_files = models.ManyToManyField('ProjectFile', related_name='project')
 
     @property
     def count_of_files(self):
-        return self.files.count()
+        return self.project_files.count()
 
     def __str__(self):
         return self.name
