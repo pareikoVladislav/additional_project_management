@@ -30,7 +30,6 @@ class ProjectAdmin(admin.ModelAdmin):
 
     actions = [replace_spaces_with_underscores]  # регистрируем список всех кастомных админ action
 
-
 @admin.register(ProjectFile)
 class ProjectFileAdmin(admin.ModelAdmin):
     list_display = ['file_name', 'file_path', 'created_at']
