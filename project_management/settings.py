@@ -43,6 +43,9 @@ INSTALLED_APPS = [
 
     # local
     'management_app.apps.ManagementAppConfig',
+
+    # 3rd party
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
