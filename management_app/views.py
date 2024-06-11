@@ -2,11 +2,10 @@ from rest_framework.response import Response
 from rest_framework.request import Request
 from rest_framework.decorators import api_view
 from rest_framework import status
-
-from management_app.models import Project, Tag
+from management_app.models import Project, Tag, Task
 from management_app.serializers.projects import AllProjectsSerializer
 from management_app.serializers.tags import AllTagsSerializer
-
+from management_app.serializers.tasks import AllTasksSerializer
 
 @api_view(["GET"])
 def get_all_projects(request: Request) -> Response:
@@ -24,5 +23,15 @@ def get_all_tags(request: Request) -> Response:
     if not tags.exists():
         return Response(data=[], status=status.HTTP_204_NO_CONTENT)
     serialize = AllTagsSerializer(tags, many=True)
+
+    return Response(data=serialize.data, status=status.HTTP_200_OK)
+
+
+@api_view(['GET'])
+def get_all_tasks(request: Request) -> Response:
+    tasks = Task.objects.all()
+    if not tasks.exists():
+        return Response(data=[], status=status.HTTP_204_NO_CONTENT)
+    serialize = AllTasksSerializer(tasks, many=True)
 
     return Response(data=serialize.data, status=status.HTTP_200_OK)
