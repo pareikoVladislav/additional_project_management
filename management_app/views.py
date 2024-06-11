@@ -26,3 +26,14 @@ def get_all_tags(request: Request) -> Response:
     serialize = AllTagsSerializer(tags, many=True)
 
     return Response(data=serialize.data, status=status.HTTP_200_OK)
+
+
+@api_view(["Get"])
+def get_tag_by_id(request: Request, pk: int) -> Response:
+    try:
+        tag_by_id = Tag.objects.get(pk=pk)
+    except Tag.DoesNotExist:
+        return Response(data={}, status=status.HTTP_204_NO_CONTENT)
+
+    serialize = AllTagsSerializer(tag_by_id)
+    return Response(data=serialize.data, status=status.HTTP_200_OK)
