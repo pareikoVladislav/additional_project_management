@@ -18,6 +18,19 @@ def get_all_projects(request: Request) -> Response:
     return Response(data=serialize.data, status=status.HTTP_200_OK)
 
 
+@api_view(["POST"])
+def create_new_tag(request: Request) -> Response:
+    tag_data = request.data
+    serializer = AllTagsSerializer(data=tag_data)
+
+    if not serializer.is_valid():
+        return Response(data=serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    serializer.save()
+
+    return Response(data=serializer.data, status=status.HTTP_201_CREATED)
+
+
 @api_view(["GET"])
 def get_all_tags(request: Request) -> Response:
     tags = Tag.objects.all()
